@@ -275,10 +275,10 @@ public:
 		const float depth = zMax - zMin;
 		
 		return Mat4(
-			2*zMin/width,	0,					(xMax+xMin)/width,		0,
-			0,				2*zMin/height,		(yMax+yMin)/height,		0,
-			0,				0,					-(zMax+zMin)/depth,		-2*zMax*zMin/depth,
-			0,				0,					-1,						0 );
+			2*zMin/width,		0,			(xMax+xMin)/width,		0,
+			0,			2*zMin/height,		(yMax+yMin)/height,		0,
+			0,			0,			-(zMax+zMin)/depth,		-2*zMax*zMin/depth,
+			0,			0,			-1,				0 );
 	}
 
 	// Generates a persepctive projection matrix based off desired horizontal FOV and screen ratio
