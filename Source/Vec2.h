@@ -96,19 +96,13 @@ struct Vec2
 	// Returns TRUE if this vector is equivilent to another vector
 	bool operator==( Vec2 rhs )
 	{
-		if( x == rhs.x && y == rhs.y )
-			return true;
-		else
-			return false;
+		return x == rhs.x && y == rhs.y;
 	}
 
 	// Returns TRUE of this vector is NOT equivilent to another vector
 	bool operator!=( Vec2 rhs )
 	{
-		if( x != rhs.x || y != rhs.y )
-			return true;
-		else
-			return false;
+		return x != rhs.x || y != rhs.y;
 	}
 };
 
