@@ -74,12 +74,12 @@ public:
 
 		/// ROW 1
 		result.set( 0, 0,
-		values[1][1]*values[2][2]*values[3][3] +
-		values[2][1]*values[3][2]*values[1][3] +
-		values[3][1]*values[1][2]*values[2][3] -
-		values[1][1]*values[3][2]*values[2][3] -
-		values[2][1]*values[1][2]*values[3][3] -
-		values[3][1]*values[2][2]*values[1][3] );
+			values[1][1]*values[2][2]*values[3][3] +
+			values[2][1]*values[3][2]*values[1][3] +
+			values[3][1]*values[1][2]*values[2][3] -
+			values[1][1]*values[3][2]*values[2][3] -
+			values[2][1]*values[1][2]*values[3][3] -
+			values[3][1]*values[2][2]*values[1][3] );
 
 		/// ROW 2
 		result.set( 0, 1,
