@@ -115,10 +115,7 @@ struct Vec3
 	// Returns TRUE if this vector is NOT equivilent to another vector
 	bool operator!=( Vec3 rhs )
 	{
-		if( x != rhs.x || y != rhs.y || z != rhs.z )
-			return true;
-		else
-			return false;
+		return x != rhs.x || y != rhs.y || z != rhs.z;
 	}
 };
 
