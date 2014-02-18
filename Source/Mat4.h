@@ -45,300 +45,174 @@ public:
 	///////////////////
 
 	// Returns the inverse of this matrix
-	static void inverse( const Mat4& in, Mat4* const out )
+	Mat4 inverse()
 	{
-		// Seriously, fuck this shit, I had to type all this by hand
 		// based off http://www.cg.info.hiroshima-cu.ac.jp/~miyazaki/knowledge/teche23.html
+
+		Mat4 result;
 
 		///////////////////
 		///  COLUMN 1   ///
 		///////////////////
 
 		/// ROW 1
-		out->set( 0, 0,
-			in[1][1]*in[2][2]*in[3][3] +
-			in[2][1]*in[3][2]*in[1][3] +
-			in[3][1]*in[1][2]*in[2][3] -
-			in[1][1]*in[3][2]*in[2][3] -
-			in[2][1]*in[1][2]*in[3][3] -
-			in[3][1]*in[2][2]*in[1][3] );
+		result.set( 0, 0,
+			values[1][1]*values[2][2]*values[3][3] +
+			values[2][1]*values[3][2]*values[1][3] +
+			values[3][1]*values[1][2]*values[2][3] -
+			values[1][1]*values[3][2]*values[2][3] -
+			values[2][1]*values[1][2]*values[3][3] -
+			values[3][1]*values[2][2]*values[1][3] );
 
 		/// ROW 2
-		out->set( 0, 1,
-			in[0][1]*in[3][2]*in[2][3] +
-			in[2][1]*in[0][2]*in[3][3] +
-			in[3][1]*in[2][2]*in[0][3] -
-			in[0][1]*in[2][2]*in[3][3] -
-			in[2][1]*in[3][2]*in[0][3] -
-			in[3][1]*in[0][2]*in[2][3] );
+		result.set( 0, 1,
+			values[0][1]*values[3][2]*values[2][3] +
+			values[2][1]*values[0][2]*values[3][3] +
+			values[3][1]*values[2][2]*values[0][3] -
+			values[0][1]*values[2][2]*values[3][3] -
+			values[2][1]*values[3][2]*values[0][3] -
+			values[3][1]*values[0][2]*values[2][3] );
 
 		/// ROW 3
-		out->set( 0, 2,
-			in[0][1]*in[1][2]*in[3][3] +
-			in[1][1]*in[3][2]*in[0][3] +
-			in[3][1]*in[0][2]*in[1][3] -
-			in[0][1]*in[3][2]*in[1][3] -
-			in[1][1]*in[0][2]*in[3][3] -
-			in[3][1]*in[1][2]*in[0][3] );
+		result.set( 0, 2,
+			values[0][1]*values[1][2]*values[3][3] +
+			values[1][1]*values[3][2]*values[0][3] +
+			values[3][1]*values[0][2]*values[1][3] -
+			values[0][1]*values[3][2]*values[1][3] -
+			values[1][1]*values[0][2]*values[3][3] -
+			values[3][1]*values[1][2]*values[0][3] );
 
 		/// ROW 4 (fixed)
-		out->set( 0, 3,
-			in[0][1]*in[2][2]*in[1][3] +
-			in[1][1]*in[0][2]*in[2][3] +
-			in[2][1]*in[1][2]*in[0][3] -
-			in[0][1]*in[1][2]*in[2][3] -
-			in[1][1]*in[2][2]*in[0][3] -
-			in[2][1]*in[0][2]*in[1][3] );
+		result.set( 0, 3,
+			values[0][1]*values[2][2]*values[1][3] +
+			values[1][1]*values[0][2]*values[2][3] +
+			values[2][1]*values[1][2]*values[0][3] -
+			values[0][1]*values[1][2]*values[2][3] -
+			values[1][1]*values[2][2]*values[0][3] -
+			values[2][1]*values[0][2]*values[1][3] );
 
 		////////////////////
 		///   COLUMN 2   ///
 		////////////////////
 
 		/// ROW 1
-		out->set( 1, 0,
-			in[1][0]*in[3][2]*in[2][3] +
-			in[2][0]*in[1][2]*in[3][3] +
-			in[3][0]*in[2][2]*in[1][3] -
-			in[1][0]*in[2][2]*in[3][3] -
-			in[2][0]*in[3][2]*in[1][3] -
-			in[3][0]*in[1][2]*in[2][3] );
+		result.set( 1, 0,
+			values[1][0]*values[3][2]*values[2][3] +
+			values[2][0]*values[1][2]*values[3][3] +
+			values[3][0]*values[2][2]*values[1][3] -
+			values[1][0]*values[2][2]*values[3][3] -
+			values[2][0]*values[3][2]*values[1][3] -
+			values[3][0]*values[1][2]*values[2][3] );
 
 		/// ROW 2
-		out->set( 1, 1,
-			in[0][0]*in[2][2]*in[3][3] +
-			in[2][0]*in[3][2]*in[0][3] +
-			in[3][0]*in[0][2]*in[2][3] -
-			in[0][0]*in[3][2]*in[2][3] -
-			in[2][0]*in[0][2]*in[3][3] -
-			in[3][0]*in[2][2]*in[0][3] );
+		result.set( 1, 1,
+			values[0][0]*values[2][2]*values[3][3] +
+			values[2][0]*values[3][2]*values[0][3] +
+			values[3][0]*values[0][2]*values[2][3] -
+			values[0][0]*values[3][2]*values[2][3] -
+			values[2][0]*values[0][2]*values[3][3] -
+			values[3][0]*values[2][2]*values[0][3] );
 
 		/// ROW 3
-		out->set( 1, 2,
-			in[0][0]*in[3][2]*in[1][3] +
-			in[1][0]*in[0][2]*in[3][3] +
-			in[3][0]*in[1][2]*in[0][3] -
-			in[0][0]*in[1][2]*in[3][3] -
-			in[1][0]*in[3][2]*in[0][3] -
-			in[3][0]*in[0][2]*in[1][3] );
+		result.set( 1, 2,
+			values[0][0]*values[3][2]*values[1][3] +
+			values[1][0]*values[0][2]*values[3][3] +
+			values[3][0]*values[1][2]*values[0][3] -
+			values[0][0]*values[1][2]*values[3][3] -
+			values[1][0]*values[3][2]*values[0][3] -
+			values[3][0]*values[0][2]*values[1][3] );
 
 		/// ROW 4
-		out->set( 1, 3,
-			in[0][0]*in[1][2]*in[2][3] +
-			in[1][0]*in[2][2]*in[0][3] +
-			in[2][0]*in[0][2]*in[1][3] -
-			in[0][0]*in[2][2]*in[1][3] -
-			in[1][0]*in[0][2]*in[2][3] -
-			in[2][0]*in[1][2]*in[0][3] );
+		result.set( 1, 3,
+			values[0][0]*values[1][2]*values[2][3] +
+			values[1][0]*values[2][2]*values[0][3] +
+			values[2][0]*values[0][2]*values[1][3] -
+			values[0][0]*values[2][2]*values[1][3] -
+			values[1][0]*values[0][2]*values[2][3] -
+			values[2][0]*values[1][2]*values[0][3] );
 
 		////////////////////
 		///   COLUMN 3   ///
 		////////////////////
 
 		/// ROW 1
-		out->set( 2, 0,
-			in[1][0]*in[2][1]*in[3][3] +
-			in[2][0]*in[3][1]*in[1][3] +
-			in[3][0]*in[1][1]*in[2][3] -
-			in[1][0]*in[3][1]*in[2][3] -
-			in[2][0]*in[1][1]*in[3][3] -
-			in[3][0]*in[2][1]*in[1][3] );
+		result.set( 2, 0,
+			values[1][0]*values[2][1]*values[3][3] +
+			values[2][0]*values[3][1]*values[1][3] +
+			values[3][0]*values[1][1]*values[2][3] -
+			values[1][0]*values[3][1]*values[2][3] -
+			values[2][0]*values[1][1]*values[3][3] -
+			values[3][0]*values[2][1]*values[1][3] );
 
 		/// ROW 2
-		out->set( 2, 1,
-			in[0][0]*in[3][1]*in[2][3] +
-			in[2][0]*in[0][1]*in[3][3] +
-			in[3][0]*in[2][1]*in[0][3] -
-			in[0][0]*in[2][1]*in[3][3] -
-			in[2][0]*in[3][1]*in[0][3] -
-			in[3][0]*in[0][1]*in[2][3] );
+		result.set( 2, 1,
+			values[0][0]*values[3][1]*values[2][3] +
+			values[2][0]*values[0][1]*values[3][3] +
+			values[3][0]*values[2][1]*values[0][3] -
+			values[0][0]*values[2][1]*values[3][3] -
+			values[2][0]*values[3][1]*values[0][3] -
+			values[3][0]*values[0][1]*values[2][3] );
 
 		/// ROW 3
-		out->set( 2, 2,
-			in[0][0]*in[1][1]*in[3][3] +
-			in[1][0]*in[3][1]*in[0][3] +
-			in[3][0]*in[0][1]*in[1][3] -
-			in[0][0]*in[3][1]*in[1][3] -
-			in[1][0]*in[0][1]*in[3][3] -
-			in[3][0]*in[1][1]*in[0][3] );
+		result.set( 2, 2,
+			values[0][0]*values[1][1]*values[3][3] +
+			values[1][0]*values[3][1]*values[0][3] +
+			values[3][0]*values[0][1]*values[1][3] -
+			values[0][0]*values[3][1]*values[1][3] -
+			values[1][0]*values[0][1]*values[3][3] -
+			values[3][0]*values[1][1]*values[0][3] );
 
 		/// ROW 4
-		out->set( 2, 3,
-			in[0][0]*in[2][1]*in[1][3] +
-			in[1][0]*in[0][1]*in[2][3] +
-			in[2][0]*in[1][1]*in[0][3] -
-			in[0][0]*in[1][1]*in[2][3] -
-			in[1][0]*in[2][1]*in[0][3] -
-			in[2][0]*in[0][1]*in[1][3] );
+		result.set( 2, 3,
+			values[0][0]*values[2][1]*values[1][3] +
+			values[1][0]*values[0][1]*values[2][3] +
+			values[2][0]*values[1][1]*values[0][3] -
+			values[0][0]*values[1][1]*values[2][3] -
+			values[1][0]*values[2][1]*values[0][3] -
+			values[2][0]*values[0][1]*values[1][3] );
 
 		////////////////////
 		///   COLUMN 4   ///
 		////////////////////
 
 		/// ROW 1
-		out->set( 3, 0,
-			in[1][0]*in[3][1]*in[2][2] +
-			in[2][0]*in[1][1]*in[3][2] +
-			in[3][0]*in[2][1]*in[1][2] -
-			in[1][0]*in[2][1]*in[3][2] -
-			in[2][0]*in[3][1]*in[1][2] -
-			in[3][0]*in[1][1]*in[2][2] );
+		result.set( 3, 0,
+			values[1][0]*values[3][1]*values[2][2] +
+			values[2][0]*values[1][1]*values[3][2] +
+			values[3][0]*values[2][1]*values[1][2] -
+			values[1][0]*values[2][1]*values[3][2] -
+			values[2][0]*values[3][1]*values[1][2] -
+			values[3][0]*values[1][1]*values[2][2] );
 
 		/// ROW 2
-		out->set( 3, 1,
-			in[0][0]*in[2][1]*in[3][2] +
-			in[2][0]*in[3][1]*in[0][2] +
-			in[3][0]*in[0][1]*in[2][2] -
-			in[0][0]*in[3][1]*in[2][2] -
-			in[2][0]*in[0][1]*in[3][2] -
-			in[3][0]*in[2][1]*in[0][2] );
+		result.set( 3, 1,
+			values[0][0]*values[2][1]*values[3][2] +
+			values[2][0]*values[3][1]*values[0][2] +
+			values[3][0]*values[0][1]*values[2][2] -
+			values[0][0]*values[3][1]*values[2][2] -
+			values[2][0]*values[0][1]*values[3][2] -
+			values[3][0]*values[2][1]*values[0][2] );
 
 		/// ROW 3
-		out->set( 3, 2,
-			in[0][0]*in[3][1]*in[1][2] +
-			in[1][0]*in[0][1]*in[3][2] +
-			in[3][0]*in[1][1]*in[0][2] -
-			in[0][0]*in[1][1]*in[3][2] -
-			in[1][0]*in[3][1]*in[0][2] -
-			in[3][0]*in[0][1]*in[1][2] );
+		result.set( 3, 2,
+			values[0][0]*values[3][1]*values[1][2] +
+			values[1][0]*values[0][1]*values[3][2] +
+			values[3][0]*values[1][1]*values[0][2] -
+			values[0][0]*values[1][1]*values[3][2] -
+			values[1][0]*values[3][1]*values[0][2] -
+			values[3][0]*values[0][1]*values[1][2] );
 
 		/// ROW 4
-		out->set( 3, 3,
-			in[0][0]*in[1][1]*in[2][2] +
-			in[1][0]*in[2][1]*in[0][2] +
-			in[2][0]*in[0][1]*in[1][2] -
-			in[0][0]*in[2][1]*in[1][2] -
-			in[1][0]*in[0][1]*in[2][2] -
-			in[2][0]*in[1][1]*in[0][2] );
-	}
+		result.set( 3, 3,
+			values[0][0]*values[1][1]*values[2][2] +
+			values[1][0]*values[2][1]*values[0][2] +
+			values[2][0]*values[0][1]*values[1][2] -
+			values[0][0]*values[2][1]*values[1][2] -
+			values[1][0]*values[0][1]*values[2][2] -
+			values[2][0]*values[1][1]*values[0][2] );
 
-//bool gluInvertMatrix( const double m[16], double invOut[16] ) {
-//    double inv[16], det;
-//    int i;
-//
-//    inv[0] = m[5]  * m[10] * m[15] - 
-//             m[5]  * m[11] * m[14] - 
-//             m[9]  * m[6]  * m[15] + 
-//             m[9]  * m[7]  * m[14] +
-//             m[13] * m[6]  * m[11] - 
-//             m[13] * m[7]  * m[10];
-//
-//    inv[4] = -m[4]  * m[10] * m[15] + 
-//              m[4]  * m[11] * m[14] + 
-//              m[8]  * m[6]  * m[15] - 
-//              m[8]  * m[7]  * m[14] - 
-//              m[12] * m[6]  * m[11] + 
-//              m[12] * m[7]  * m[10];
-//
-//    inv[8] = m[4]  * m[9] * m[15] - 
-//             m[4]  * m[11] * m[13] - 
-//             m[8]  * m[5] * m[15] + 
-//             m[8]  * m[7] * m[13] + 
-//             m[12] * m[5] * m[11] - 
-//             m[12] * m[7] * m[9];
-//
-//    inv[12] = -m[4]  * m[9] * m[14] + 
-//               m[4]  * m[10] * m[13] +
-//               m[8]  * m[5] * m[14] - 
-//               m[8]  * m[6] * m[13] - 
-//               m[12] * m[5] * m[10] + 
-//               m[12] * m[6] * m[9];
-//
-//    inv[1] = -m[1]  * m[10] * m[15] + 
-//              m[1]  * m[11] * m[14] + 
-//              m[9]  * m[2] * m[15] - 
-//              m[9]  * m[3] * m[14] - 
-//              m[13] * m[2] * m[11] + 
-//              m[13] * m[3] * m[10];
-//
-//    inv[5] = m[0]  * m[10] * m[15] - 
-//             m[0]  * m[11] * m[14] - 
-//             m[8]  * m[2] * m[15] + 
-//             m[8]  * m[3] * m[14] + 
-//             m[12] * m[2] * m[11] - 
-//             m[12] * m[3] * m[10];
-//
-//    inv[9] = -m[0]  * m[9] * m[15] + 
-//              m[0]  * m[11] * m[13] + 
-//              m[8]  * m[1] * m[15] - 
-//              m[8]  * m[3] * m[13] - 
-//              m[12] * m[1] * m[11] + 
-//              m[12] * m[3] * m[9];
-//
-//    inv[13] = m[0]  * m[9] * m[14] - 
-//              m[0]  * m[10] * m[13] - 
-//              m[8]  * m[1] * m[14] + 
-//              m[8]  * m[2] * m[13] + 
-//              m[12] * m[1] * m[10] - 
-//              m[12] * m[2] * m[9];
-//
-//    inv[2] = m[1]  * m[6] * m[15] - 
-//             m[1]  * m[7] * m[14] - 
-//             m[5]  * m[2] * m[15] + 
-//             m[5]  * m[3] * m[14] + 
-//             m[13] * m[2] * m[7] - 
-//             m[13] * m[3] * m[6];
-//
-//    inv[6] = -m[0]  * m[6] * m[15] + 
-//              m[0]  * m[7] * m[14] + 
-//              m[4]  * m[2] * m[15] - 
-//              m[4]  * m[3] * m[14] - 
-//              m[12] * m[2] * m[7] + 
-//              m[12] * m[3] * m[6];
-//
-//    inv[10] = m[0]  * m[5] * m[15] - 
-//              m[0]  * m[7] * m[13] - 
-//              m[4]  * m[1] * m[15] + 
-//              m[4]  * m[3] * m[13] + 
-//              m[12] * m[1] * m[7] - 
-//              m[12] * m[3] * m[5];
-//
-//    inv[14] = -m[0]  * m[5] * m[14] + 
-//               m[0]  * m[6] * m[13] + 
-//               m[4]  * m[1] * m[14] - 
-//               m[4]  * m[2] * m[13] - 
-//               m[12] * m[1] * m[6] + 
-//               m[12] * m[2] * m[5];
-//
-//    inv[3] = -m[1] * m[6] * m[11] + 
-//              m[1] * m[7] * m[10] + 
-//              m[5] * m[2] * m[11] - 
-//              m[5] * m[3] * m[10] - 
-//              m[9] * m[2] * m[7] + 
-//              m[9] * m[3] * m[6];
-//
-//    inv[7] = m[0] * m[6] * m[11] - 
-//             m[0] * m[7] * m[10] - 
-//             m[4] * m[2] * m[11] + 
-//             m[4] * m[3] * m[10] + 
-//             m[8] * m[2] * m[7] - 
-//             m[8] * m[3] * m[6];
-//
-//    inv[11] = -m[0] * m[5] * m[11] + 
-//               m[0] * m[7] * m[9] + 
-//               m[4] * m[1] * m[11] - 
-//               m[4] * m[3] * m[9] - 
-//               m[8] * m[1] * m[7] + 
-//               m[8] * m[3] * m[5];
-//
-//    inv[15] = m[0] * m[5] * m[10] - 
-//              m[0] * m[6] * m[9] - 
-//              m[4] * m[1] * m[10] + 
-//              m[4] * m[2] * m[9] + 
-//              m[8] * m[1] * m[6] - 
-//              m[8] * m[2] * m[5];
-//
-//    det = m[0] * inv[0] + m[1] * inv[4] + m[2] * inv[8] + m[3] * inv[12];
-//
-//    if (det == 0)
-//        return false;
-//
-//    det = 1.0 / det;
-//
-//    for (i = 0; i < 16; i++)
-//        invOut[i] = inv[i] * det;
-//
-//    return true;
-//}
+		return result;
+	}
 
 	// Print the matrix to the console
 	void display() const
@@ -363,7 +237,7 @@ public:
 	/////////////////////
 	
 	// Generates a perspective projection matrix
-	static void perspective( const float hFOV, const float vFOV, const float zMin, const float zMax, Mat4* const out )
+	static Mat4 perspective( const float hFOV, const float vFOV, const float zMin, const float zMax )
 	{
 		// Convert vertical and horizontal FOV to radians
 		const float RadHFOV = hFOV * Deg2Rad;
@@ -379,7 +253,7 @@ public:
 		const float height = yMax - yMin;
 		const float depth = zMax - zMin;
 		
-		*out = Mat4(
+		return Mat4(
 			2*zMin/width,	0,					(xMax+xMin)/width,		0,
 			0,				2*zMin/height,		(yMax+yMin)/height,		0,
 			0,				0,					-(zMax+zMin)/depth,		-2*zMax*zMin/depth,
@@ -387,35 +261,35 @@ public:
 	}
 
 	// Generates a persepctive projection matrix based off desired horizontal FOV and screen ratio
-	static void perspectiveHFOV( const float hFOV, const float ratio, const float zMin, const float zMax, Mat4* const out )
+	static Mat4 perspectiveHFOV( const float hFOV, const float ratio, const float zMin, const float zMax )
 	{
 		// Convert hFOV to radians
 		const float RadHFOV = hFOV * Deg2Rad;
 
 		const float vFOV = Rad2Deg*2*atan( tan( hFOV * 0.5f ) * 1/ratio );
 
-		perspective( hFOV, vFOV, zMin, zMax, out );
+		return perspective( hFOV, vFOV, zMin, zMax );
 	}
 
 	// Generates a perspective projection matrix based off the desired vertical FOV and screen ratio
-	static void perspectiveVFOV( const float vFOV, const float ratio, const float zMin, const float zMax, Mat4* const out )
+	static Mat4 perspectiveVFOV( const float vFOV, const float ratio, const float zMin, const float zMax )
 	{
 		// Convert the vFOV to radians
 		const float RadVFOV = vFOV * Deg2Rad;
 
 		float hFOV = Rad2Deg*2*atan( tan( RadVFOV * 0.5f ) * ratio );
 
-		perspective( hFOV, vFOV, zMin, zMax, out );
+		return perspective( hFOV, vFOV, zMin, zMax );
 	}
 
 	// Generates an orthographic projection matrix
-	static void orthographic( const float xMin, const float xMax, const float yMin, const float yMax, const float zMin, const float zMax, Mat4* const out )
+	static Mat4 orthographic( const float xMin, const float xMax, const float yMin, const float yMax, const float zMin, const float zMax )
 	{
 		const float width = xMax - xMin;
 		const float height = yMax - yMin;
 		const float depth = zMax - zMin;
 
-		*out = Mat4( 
+		return Mat4( 
 			2/width,	0,			0,			-(xMax+xMin)/width,
 			0,			2/height,	0,			-(yMax+yMin)/height,
 			0,			0,			-2/depth,	-(zMax+zMin)/depth,
@@ -423,9 +297,9 @@ public:
 	}
 
 	// Returns a translation matrix from a 3-length vector
-	static void translate( const Vec3& vec, Mat4* const out )
+	static Mat4 translate( const Vec3& vec )
 	{
-		*out = Mat4(
+		return Mat4(
 			1,	0,	0,	vec.x,
 			0,	1,	0,	vec.y,
 			0,	0,	1,	vec.z,
@@ -433,9 +307,9 @@ public:
 	}
 
 	// Returns a scale matrix from a 3-length vector
-	static void scale( const Vec3& vec, Mat4* const out )
+	static Mat4 scale( const Vec3& vec )
 	{
-		*out = Mat4(
+		return Mat4(
 			vec.x,	0,	0,	0,
 			0,	vec.y,	0,	0,
 			0,	0,	vec.z,	0,
@@ -443,13 +317,13 @@ public:
 	}
 
 	// Returns a rotation matrix from a quaternion
-	static void rotate( const Quat& rot, Mat4* const out )
+	static Mat4 rotate( const Quat& rot )
 	{
 		// Retreive the data members of rot
 		float x, y, z, w;
 		rot.retrieve( &x, &y, &z, &w );
 		
-		*out = Mat4(
+		return Mat4(
 			1 - 2*y*y - 2*z*z,	2*x*y + 2*z*w,		2*x*z - 2*y*w,		0,
 			2*x*y - 2*z*w,		1 - 2*x*x - 2*z*z,	2*y*z + 2*x*w,		0,
 			2*x*z + 2*y*w,		2*y*z - 2*x*w,		1 - 2*x*x - 2*y*y,	0,
@@ -481,7 +355,6 @@ public:
 	{
 		Mat4 total;
 
-		// Cool algorithm I came up with for automatically doing this shit
 		// Based off http://www.open.gl/transformations
 		
 		// For each row
