@@ -15,14 +15,8 @@ struct Vec3
 	///   Constructors   ///
 	////////////////////////
 
-	// Default constructor
-	Vec3()
-	{
-		x = 0; y = 0; z = 0;
-	}
-
-	// Custom constructor
-	Vec3( float _X, float _Y, float _Z )
+	// Constructor, default to 0
+	Vec3( const float _X = 0, const float _Y = 0, const float _Z = 0 )
 	{
 		x = _X; y = _Y; z = _Z;
 	}
@@ -34,13 +28,13 @@ struct Vec3
 	// Returns the length of this vector
 	float length() const
 	{
-		return sqrtf( x*x + y*y + z*z );
+		return std::sqrtf( x*x + y*y + z*z );
 	}
 
 	// Returns the normal of this vector
 	Vec3 normalize() const
 	{
-		float length = this->length();
+		const float length = this->length();
 		return Vec3( x/length, y/length, z/length );
 	}
 
@@ -63,10 +57,10 @@ struct Vec3
 	// Calculates the angle between two vectors
 	static float angle( const Vec3& a, const Vec3& b )
 	{
-		Vec3 a_normalized = a.normalize();
-		Vec3 b_normalized = b.normalize();
+		const Vec3 a_normalized = a.normalize();
+		const Vec3 b_normalized = b.normalize();
 
-		return acos( Vec3::dot( a_normalized, b_normalized ) );
+		return std::acos( Vec3::dot( a_normalized, b_normalized ) );
 	}
 
 	/////////////////////

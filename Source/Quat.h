@@ -30,7 +30,7 @@ public:
 	}
 
 	// Custom constructor
-	Quat( const Vec3& axis, float angle )
+	Quat( const Vec3& axis, const float angle )
 	{
 		// Based off http://www.cprogramming.com/tutorial/3d/quaternions.html
 		// Make sure the axis vector is normalized
@@ -48,7 +48,7 @@ public:
 	///////////////////
 
 	// Rotate this quaternion by and axis and angle
-	void rotateByAxisAngle( const Vec3& axis, float angle, bool local )
+	void rotateByAxisAngle( const Vec3& axis, const float angle, const bool local )
 	{
 		// Construct a quaternion from the axis and angle
 		Quat rotation( axis, angle );
@@ -62,9 +62,9 @@ public:
 	}
 
 	// Returns the data members of this quaternion to external variables
-	void retrieve( float& X, float& Y, float& Z, float& W ) const
+	void retrieve( float* const X, float* const Y, float* const Z, float* const W ) const
 	{
-		X = x; Y = y; Z = z; W = w;
+		*X = x; *Y = y; *Z = z; *W = w;
 	}
 
 	/////////////////////

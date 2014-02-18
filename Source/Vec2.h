@@ -15,14 +15,8 @@ struct Vec2
 	///   Constructors   ///
 	////////////////////////
 
-	// Default constructor
-	Vec2()
-	{
-		x = 0; y = 0;
-	}
-
-	// Custom constructor
-	Vec2( float _X, float _Y )
+	// Constructor, default set to 0
+	explicit Vec2( const float _X = 0, const float _Y = 0 )
 	{
 		x = _X; y = _Y;
 	}
@@ -34,7 +28,7 @@ struct Vec2
 	// Returns the length of this vector
 	float length() const
 	{
-		return sqrtf( x*x + y*y );
+		return std::sqrtf( x*x + y*y );
 	}
 
 	// Returns the normal of this vector
@@ -56,7 +50,7 @@ struct Vec2
 		Vec2 a_normalized = a.normalize();
 		Vec2 b_normalized = b.normalize();
 
-		return acos( Vec2::dot( a_normalized, b_normalized ) );
+		return std::acos( Vec2::dot( a_normalized, b_normalized ) );
 	}
 
 	/////////////////////
