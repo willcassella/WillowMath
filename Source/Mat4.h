@@ -396,7 +396,7 @@ public:
 	}
 
 	// Get contents as a const array
-	const float* const operator[]( std::size_t index ) const
+	const float* const operator[]( const std::size_t index ) const
 	{
 		return values[index];
 	}
