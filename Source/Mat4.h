@@ -105,11 +105,6 @@ public:
 	{
 		return values[index];
 	}
-	
-	inline const float* const operator[]( const std::size_t index ) const
-	{
-		return values[index];
-	}
 };
 
 #endif
